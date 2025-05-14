@@ -1,9 +1,11 @@
 <script setup lang="ts">
-  import Login from '~/src/components/templates/Login.vue';
+
 </script>
 
 <template>
-  <Login />
+  <div>
+    Page: about
+  </div>
 </template>
 
 <style scoped>

@@ -7,7 +7,8 @@ export default defineNuxtConfig({
   ssr: false,
   modules: [
     '@pinia/nuxt',
-    'pinia-plugin-persistedstate/nuxt'
+    'pinia-plugin-persistedstate/nuxt',
+    'shadcn-nuxt'
   ],
   pinia: { storesDirs: ['~/src/store/**'] },
   components: [
@@ -23,4 +24,12 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
   },
+  runtimeConfig: {
+    // The private keys which are only available within server-side
+    apiSecret: "123",
+    // Keys within public, will be also exposed to the client-side
+    public: {
+      apiBase: process.env.API_URL || "",
+    }
+  }
 })

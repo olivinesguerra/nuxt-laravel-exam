@@ -1,6 +1,8 @@
 import { defineStore } from 'pinia';
 import _ from "lodash";
 
+const config = useRuntimeConfig();
+
 export const useAuthStore = defineStore('auth', {
     state: () => {
         return {
@@ -31,8 +33,7 @@ export const useAuthStore = defineStore('auth', {
     actions: {
         async login(email: string, password: string) {
             this.isLoading = true;
-
-            const { data: responseData, error } = await useFetch(`${process.env.API_URL}/api/auth/login`, {
+            const { data: responseData, error } = await useFetch(`${config.public.apiBase}/api/auth/login`, {
                 method: 'post',
                 body: { 
                     email,
@@ -56,7 +57,7 @@ export const useAuthStore = defineStore('auth', {
         async register(email: string, password: string, name: string) {
             this.isLoading = true;
 
-            const { data: responseData, error } = await useFetch(`${process.env.API_URL}/api/auth/register`, {
+            const { data: responseData, error } = await useFetch(`${config.public.apiBase}/api/auth/register`, {
                 method: 'post',
                 body: { 
                     email,
