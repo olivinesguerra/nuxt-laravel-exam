@@ -7,12 +7,13 @@ use App\Models\Tasks;
 
 class TaskRepository 
 {
-    public function create ($params) {
+    public function create ($params, $user) {
         return Tasks::create([
             'title' => $params->title,
             'description' => $params->description,
             'status' => $params->status,
-            'due_date' => $params->due_date
+            'due_date' => $params->due_date,
+            'owner_id' => $user->id
         ]);
     }
 

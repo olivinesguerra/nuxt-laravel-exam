@@ -33,9 +33,11 @@ class UserService
             return response()->json(['error' => 'Could not create token'], 500);
         }
 
-        return [
+       return [
             'token' => $token,
             'user' => $user,
+            'token_type' => 'bearer',
+            'expires_in' => auth()->factory()->getTTL() * 60
         ];
     }
 
@@ -56,6 +58,8 @@ class UserService
         return [
             'token' => $token,
             'user' => $user,
+            'token_type' => 'bearer',
+            'expires_in' => auth()->factory()->getTTL() * 60
         ];
     }
 

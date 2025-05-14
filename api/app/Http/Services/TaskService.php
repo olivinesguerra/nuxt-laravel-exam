@@ -13,8 +13,8 @@ class TaskService
         $this->task_repository = new TaskRepository();
     }
 
-    public function create (Request $request) {
-        return  $this->task_repository->create($request);
+    public function create (Request $request, $user) {
+        return  $this->task_repository->create($request, $user);
     }
 
     public function update (string $id, Request $request) {
@@ -31,6 +31,7 @@ class TaskService
         $task->description = $request->filled('description') ? $request->description : $task->description;
         $task->due_date = $request->filled('due_date') ? $request->due_date : $task->due_date;
         $task->status = $request->filled('status') ? $request->status : $task->status;
+        
 
         return $task->save();
     }

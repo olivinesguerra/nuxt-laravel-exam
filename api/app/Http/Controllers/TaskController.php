@@ -22,8 +22,9 @@ class TaskController extends BaseController
 
     public function create (Request $request) {
         try {
+            $user = auth()->user();
             $this->task_validator->create($request);
-            $data = $this->task_service->create($request);
+            $data = $this->task_service->create($request,$user);
             return $this->responseSuccess($data);
         } catch (Exception $e) {
             return $this->handleException($e);
