@@ -33,7 +33,7 @@ class TaskController extends BaseController
     public function update (string $id, Request $request) {
         try {
             $this->task_validator->update($request);
-            $this->task_service->update($id, $update);
+            $this->task_service->update($id, $request);
             return $this->responseSuccess();
         } catch (Exception $e) {
             return $this->handleException($e);
