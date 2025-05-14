@@ -24,6 +24,7 @@
     "tailwindcss": "^4.1.6",
     "tw-animate-css": "^1.2.9",
     "vue": "latest",
+    "vue-final-modal": "^4.5.5",
     "vue-router": "latest",
     "vuedraggable": "^4.1.0"
   },

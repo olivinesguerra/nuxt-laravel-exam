@@ -1,5 +1,9 @@
 <script setup lang="ts">
+  import { ModalsContainer, useModal } from 'vue-final-modal'
+
   import TaskItemList from "@/src/components/organisms/TaskItemList.vue";
+  import AddTaskModal from "@/src/components/organisms/modal/AddTaskModal.vue";
+
   let items = ref([
     {
       title: 'Item 1'
@@ -12,26 +16,37 @@
     }
   ]);
 
-  const selectedButton = useState('selectedButton', () => "pending")
-  const showModal = useState('showModal', () => false)
+  const selectedButton = useState('selectedButton', () => "pending");
+  const isModalOpen = ref(true);
+  const { open, close } = useModal({
+    component: AddTaskModal,
+    attrs: {
+       onConfirm() {
+        close()
+      }
+    }
+  })
 
   const onAddPending = () => {
     selectedButton.value = "pending";
+    open();
   };
 
   const onInProgress = () => {
     selectedButton.value = "in_progress";
+    open();
   };
 
   const onCompleted = () => {
     selectedButton.value = "completed";
+    open();
   };
 </script>
 
 <template>
   <div 
     class="flex flex-row h-[calc(100vh-75px)] bg-black text-white justify-start p-[20px]">
-      
+    
     <div class="flex flex-col mr-[20px]">
       <div class="flex w-full text-white text-left">Pending</div>
       <TaskItemList :tasks="items" status="pending" />
@@ -63,6 +78,8 @@
         Add
       </Button>
     </div>
+    <ModalsContainer />
+    <!-- <AddTaskModal :isOpen="isModalOpen" /> -->
   </div>
 </template>
 
