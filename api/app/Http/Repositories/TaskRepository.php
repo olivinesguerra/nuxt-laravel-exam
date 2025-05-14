@@ -17,7 +17,7 @@ class TaskRepository
     }
 
     public function update (string $id, $params) {
-        return Tasks::where('id',$id)->update($params);
+        return Tasks::where('id', $id)->update($params);
     }
 
     public function delete (string $id) {
@@ -25,7 +25,7 @@ class TaskRepository
     }
 
     public function get (string $id) {
-        return Tasks::where('id', $id)->get();
+        return Tasks::where('id', $id)->first();
     }
 
     public function list (int $page, int $limit) {
