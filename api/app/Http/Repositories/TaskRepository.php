@@ -29,6 +29,6 @@ class TaskRepository
     }
 
     public function list (int $page, int $limit) {
-        return Tasks::where('id', $id)->offset($page)->limit($limit)->get();
+        return Tasks::offset($page)->limit($limit)->get();
     }
 }

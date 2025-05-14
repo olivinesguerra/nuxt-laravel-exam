@@ -5,7 +5,7 @@ use Exception;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller as BaseController;
-use App\Http\Validator\TaskValidator;
+use App\Http\Validator\TaskValidator; 
 use App\Http\Services\TaskService;
 
 class TaskController extends BaseController

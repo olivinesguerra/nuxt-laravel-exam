@@ -14,19 +14,19 @@ class TaskService
     }
 
     public function create (Request $request) {
-        return null;
+        return  $this->task_repository->create($request);
     }
 
     public function update (string $id, Request $request) {
-        return null;
+        return $this->task_repository->update($id, $request);
     }
 
     public function delete (string $id) {
-        return null;
+        return $this->task_repository->delete($id);
     }
 
     public function get (string $id) {
-        return null;
+        return  $this->task_repository->get($id);
     }
 
     public function list (Request $request) {
