@@ -36,15 +36,9 @@ abstract class Controller
     public function responseError($message, $code = 400)
     {
         if ($code < 200 || $code > 600) {
-         $code = 500;
+            $code = 500;
         }
-        // if ($code == 422) {
-        //   $message = json_decode($message);
-        // }
-        
-        // if ($code == 500 && env('APP_ENV') == 'production') {
-        //   $message = __('messages.something_error');
-        // }
+
         $res = [
             'code' => $code,
             'success' => false,
@@ -57,8 +51,6 @@ abstract class Controller
     {
         $message = $e->getMessage();
         $code = $e->getCode();
-
-    
         return $this->responseError($message, $code);
     }
 }

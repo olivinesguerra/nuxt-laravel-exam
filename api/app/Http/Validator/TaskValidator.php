@@ -16,7 +16,7 @@ class TaskValidator
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|min:1',
-            'order' => 'required|string|min:1',
+            'description' => 'required|string|min:1',
             'due_date' => 'required|numeric|min:1',
             'status' => ['required', new Enum(TaskStatus::class)]
         ]);
@@ -31,8 +31,9 @@ class TaskValidator
     {
         $validator = Validator::make($request->all(), [
             'title' => 'nullable|string|min:1',
-            'order' => 'nullable|string|min:1',
+            'description' => 'nullable|string|min:1',
             'due_date' => 'nullable|numeric|min:1',
+            'status' => ['nullable', new Enum(TaskStatus::class)]
         ]);
 
         if ($validator->fails()) {
