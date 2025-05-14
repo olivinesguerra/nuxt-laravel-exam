@@ -1,7 +1,7 @@
 <script setup lang="ts">
-    import { Button } from "@/components/ui/button";
-    import { Input } from '@/components/ui/input';
-    import { Label } from '@/components/ui/label';
+    import { Button } from "@/src/components/atoms/ui/button";
+    import { Input } from '@/src/components/atoms/ui/input';
+    import { Label } from '@/src/components/atoms/ui/label';
 
     import { useAuthStore } from "@/src/store/useAuthStore";
 
@@ -12,6 +12,7 @@
 
     const onSubmitCliked = async () => {
         await login(email?.value, password?.value);
+        await navigateTo('/dashboard')
     };
 
 </script>

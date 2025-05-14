@@ -3,8 +3,8 @@
 </script>
 
 <template>
-  <div  class="flex flex-col h-[50px] sticky bg-[#00FF7F] justify-center items-center">
-    
+  <div  class="flex flex-col h-[50px] bg-black justify-center items-center">
+   
   </div>
 </template>
 
