@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('status');
-            $table->timestampTz('due_date');
+            $table->string('owner_id')->nullable();
+            $table->integer('due_date')->nullable();
             $table->timestamps();
         });
     }

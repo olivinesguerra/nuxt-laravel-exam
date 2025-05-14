@@ -52,10 +52,38 @@ class Tasks extends Model
     public $timestamps = true;
 
 
+    // /**
+    //  * The storage format of the model's date columns.
+    //  *
+    //  * @var string
+    //  */
+    // protected $dateFormat = 'U';
+
     /**
-     * The storage format of the model's date columns.
+     * The attributes that are mass assignable.
      *
-     * @var string
+     * @var list<string>
      */
-    protected $dateFormat = 'U';
+    protected $fillable = [
+        'title',
+        'description',
+        'status',
+        'due_date',
+        'owner_id'
+    ];
+
+        /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'due_date' => 'timestamp',
+            'created_at' => 'timestamp',
+            'updated_at' => 'timestamp'
+        ];
+    }
+
 }
