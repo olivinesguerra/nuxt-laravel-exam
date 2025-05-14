@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Response;
 use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
@@ -30,7 +31,7 @@ class Controller extends BaseController
     if ($extends) {
       $res = [...$res, ...$extends];
     }
-    return response()->json($res, $code);
+    return Response::json($res, $code);
   }
 
   public function responseError($message, $code = 400)
@@ -50,7 +51,7 @@ class Controller extends BaseController
       'success' => false,
       'message' => $message,
     ];
-    return response()->json($res, $code);
+    return Response::json($res, $code);
   }
 
   public function handleException(Exception $e)
