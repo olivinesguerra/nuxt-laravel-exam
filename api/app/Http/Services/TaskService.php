@@ -31,6 +31,7 @@ class TaskService
         $task->description = $request->filled('description') ? $request->description : $task->description;
         $task->due_date = $request->filled('due_date') ? $request->due_date : $task->due_date;
         $task->status = $request->filled('status') ? $request->status : $task->status;
+        $task->order = $request->filled('order') ? $request->order : $task->order;
 
 
         return $task->save();

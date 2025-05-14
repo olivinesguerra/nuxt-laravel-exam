@@ -13,7 +13,8 @@ class TaskRepository
             'description' => $params->description,
             'status' => $params->status,
             'due_date' => $params->due_date,
-            'owner_id' => $user->id
+            'owner_id' => $user->id,
+            'order' => $params->order,
         ]);
     }
 
