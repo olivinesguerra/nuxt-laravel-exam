@@ -11,9 +11,6 @@
     const { login, isLoading, apiResponse } = useAuthStore();
 
     const onSubmitCliked = async () => {
-        console.log(email?.value);
-        console.log(password?.value);
-
         await login(email?.value, password?.value);
     };
 

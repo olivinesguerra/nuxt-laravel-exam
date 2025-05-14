@@ -33,23 +33,29 @@ export const useAuthStore = defineStore('auth', {
     actions: {
         async login(email: string, password: string) {
             this.isLoading = true;
-            const { data: responseData, error } = await useFetch(`${config.public.apiBase}/api/auth/login`, {
-                method: 'post',
-                body: { 
-                    email,
-                    password,
-                }
-            });
 
-            if (responseData.value) {
-                const { user, token } = (responseData.value as any);
+            try {
+                const { 
+                    data: responseData
+                } : {
+                    data: any
+                } = await $fetch(`${config.public.apiBase}/api/auth/login`, {
+                    method: 'post',
+                    body: { 
+                        email,
+                        password,
+                    }
+                });
 
-                this.user = user;
-                this.token = token;
-            } else if (error?.value) {
-                this.error = error?.value
+                if (responseData) {
+                    const { user, token } = (responseData as any);
+                    this.user = user;
+                    this.token = token;
+                } 
+
+            } catch(err: any) {
+                this.error = err?.data
             }
-
 
 
             this.isLoading = false;
@@ -57,22 +63,29 @@ export const useAuthStore = defineStore('auth', {
         async register(email: string, password: string, name: string) {
             this.isLoading = true;
 
-            const { data: responseData, error } = await useFetch(`${config.public.apiBase}/api/auth/register`, {
-                method: 'post',
-                body: { 
-                    email,
-                    password,
-                    name
-                }
-            });
+            try {
+                 const { 
+                    data: responseData 
+                } : {
+                    data: any
+                } = await $fetch(`${config.public.apiBase}/api/auth/register`, {
+                    method: 'post',
+                    body: { 
+                        email,
+                        password,
+                        name
+                    }
+                });
 
-            if (responseData.value) {
-                const { user, token } = (responseData.value as any);
-                this.user = user;
-                this.token = token;
-            } else if (error?.value) {
-                this.error = error?.value
+                if (responseData) {
+                    const { user, token } = (responseData as any);
+                    this.user = user;
+                    this.token = token;
+                } 
+            } catch(err: any) {
+                this.error = err?.data
             }
+
 
             this.isLoading = false;
         }
