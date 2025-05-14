@@ -6,7 +6,9 @@ export const useAuthStore = defineStore('auth', {
         return {
             apiResponse: {},
             isLoading: false,
-            error: {}
+            error: {},
+            user: {},
+            token: null
         };
     },
     getters: {
@@ -18,6 +20,12 @@ export const useAuthStore = defineStore('auth', {
         },
         getError:(state) => {
             return state?.error;
+        },
+        getUser:(state) => {
+            return state?.user;
+        },
+        getToken:(state) => {
+            return state?.token;
         }
     },
     actions: {
@@ -33,7 +41,10 @@ export const useAuthStore = defineStore('auth', {
             });
 
             if (responseData.value) {
-                this.apiResponse = responseData.value;
+                const { user, token } = (responseData.value as any);
+
+                this.user = user;
+                this.token = token;
             } else if (error?.value) {
                 this.error = error?.value
             }
@@ -55,11 +66,13 @@ export const useAuthStore = defineStore('auth', {
             });
 
             if (responseData.value) {
-                this.apiResponse = responseData.value;
+                const { user, token } = (responseData.value as any);
+                this.user = user;
+                this.token = token;
             } else if (error?.value) {
                 this.error = error?.value
             }
-            
+
             this.isLoading = false;
         }
     },

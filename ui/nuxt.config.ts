@@ -23,5 +23,4 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
   },
-  devtools: { enabled: true }
 })
