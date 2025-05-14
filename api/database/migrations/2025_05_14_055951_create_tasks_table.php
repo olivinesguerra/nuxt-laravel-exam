@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('status');
             $table->string('owner_id')->nullable();
+            $table->string('order')->default(0);
             $table->integer('due_date')->nullable();
             $table->timestamps();
         });
