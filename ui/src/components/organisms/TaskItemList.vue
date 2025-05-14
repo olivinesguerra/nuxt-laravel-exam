@@ -5,8 +5,17 @@
       type: Array,
       required: true,
     },
+    status: {
+      type: String,
+      required: true,
+    },
   });
-  const { tasks } = props;
+  const { tasks, status } = props;
+
+  const onDragEnd = (item: any) => {
+    console.log(item);
+  };
+
 </script>
 
 <template>
@@ -16,7 +25,7 @@
       class="flex flex-col w-full bg-black" 
       :list="[...tasks]" 
       @start="drag=true" 
-      @end="drag=false"
+      @end="onDragEnd"
     >
     
       <template #item="{element}" >

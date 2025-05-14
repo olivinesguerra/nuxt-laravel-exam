@@ -19,17 +19,17 @@
       
     <div class="flex flex-col mr-[20px] items-center">
       <div class="flex w-full text-white text-left">Pending</div>
-      <TaskItemList :tasks="items" />
+      <TaskItemList :tasks="items" status="pending" />
     </div>
 
     <div class="flex flex-col mr-[20px]">
       <div class="flex w-full text-white text-left">In Progress</div>
-      <TaskItemList :tasks="items" />
+      <TaskItemList :tasks="items" status="in_progress" />
     </div>
 
     <div class="flex flex-col">
       <div class="flex w-full text-white text-left">Completed</div>
-      <TaskItemList :tasks="items" />
+      <TaskItemList :tasks="items" status="completed" />
     </div>
   </div>
 </template>
