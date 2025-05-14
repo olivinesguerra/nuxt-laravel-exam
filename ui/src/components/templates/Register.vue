@@ -20,11 +20,11 @@
 
 <template>
   <div class="flex flex-col h-screen bg-black text-white items-center justify-center px-[500px]">
-        <Label class="flex mb-[20px]">Login</Label>
-        <Input class="flex mb-[20px]" type="email"  placeholder="Email" v-model="email" />
-        <Input class="flex mb-[20px]" type="password" placeholder="Password" v-model="password" />
-        <Input class="flex mb-[20px]" placeholder="Name" v-model="name" />
-        <Button class="flex w-full"  @click="onSubmitCliked">Submit</Button>
+    <Label class="flex mb-[20px]">Login</Label>
+    <Input class="flex mb-[20px]" type="email"  placeholder="Email" v-model="email" />
+    <Input class="flex mb-[20px]" type="password" placeholder="Password" v-model="password" />
+    <Input class="flex mb-[20px]" placeholder="Name" v-model="name" />
+    <Button class="flex w-full"  @click="onSubmitCliked">Submit</Button>
   </div>
 </template>
 

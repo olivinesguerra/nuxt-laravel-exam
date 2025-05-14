@@ -11,6 +11,7 @@ export default defineNuxtConfig({
     'shadcn-nuxt'
   ],
   pinia: { storesDirs: ['~/src/store/**'] },
+  plugins: ["~/plugins/draggablePlugin"],
   components: [
     {
       path: '~/src/components',

@@ -6,11 +6,30 @@
     },
   });
   const { tasks } = props;
+  console.log(tasks);
+      let items = ref([
+      {
+        title: 'Item 1'
+      },
+      {
+        title: 'Item 2'
+      },
+      {
+        title: 'Item 3'
+      }
+    ]);
+    console.log(items);
 </script>
 
 <template>
-  <div  class="flex flex-col h-[50px] bg-black justify-center items-center">
-   
+  <div class="flex flex-col bg-white justify-center items-center w-[250px]">
+    <VueDraggableNext class="flex flex-col w-full bg-black" v-model="items" @start="drag=true" @end="drag=false">
+      <template class="flex grow" #item="{element}">
+        <div class="flex p-[20px] my-[2px] flex-1 text-white border-white border bg-black">
+          <div class="flex">{{ element?.title }}</div>
+        </div>
+      </template>
+    </VueDraggableNext>
   </div>
 </template>
 
