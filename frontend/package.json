@@ -10,7 +10,9 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.1.6",
     "nuxt": "^3.13.2",
+    "tailwindcss": "^4.1.6",
     "vue": "latest",
     "vue-router": "latest"
   },
