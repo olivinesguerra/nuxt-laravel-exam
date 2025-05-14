@@ -7,6 +7,7 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Response;
 
 class JwtMiddleware
 {
@@ -20,7 +21,11 @@ class JwtMiddleware
          try {
             JWTAuth::parseToken()->authenticate();
         } catch (Exception $e) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return Response::json([
+                'code' => 422,
+                'success' => false,
+                'message' => 'Unauthorized',
+            ], 401);
         }
 
         return $next($request);
