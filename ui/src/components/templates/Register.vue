@@ -12,7 +12,7 @@
     const { register, isLoading, apiResponse } = useAuthStore();
 
     const onSubmitCliked = async () => {
-        await register(email?.value, password?.value);
+        await register(email?.value, password?.value, name?.value);
         await navigateTo('/dashboard')
     };
 
