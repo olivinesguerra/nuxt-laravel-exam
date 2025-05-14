@@ -61,7 +61,8 @@ class TaskController extends BaseController
 
     public function list (Request $request) {
         try {
-            $data = $this->task_service->list($request);
+            $user = auth()->user();
+            $data = $this->task_service->list($request, $user);
             return $this->responseSuccess($data);
         } catch (Exception $e) {
             return $this->handleException($e);

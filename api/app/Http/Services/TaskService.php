@@ -31,7 +31,7 @@ class TaskService
         $task->description = $request->filled('description') ? $request->description : $task->description;
         $task->due_date = $request->filled('due_date') ? $request->due_date : $task->due_date;
         $task->status = $request->filled('status') ? $request->status : $task->status;
-        
+
 
         return $task->save();
     }
@@ -44,10 +44,10 @@ class TaskService
         return  $this->task_repository->get($id);
     }
 
-    public function list (Request $request) {
+    public function list (Request $request, $user) {
         $limit = $request->filled('limit') ? $request->limit : 20;
         $page = $request->filled('page') ? $request->page : 0;
-        $data = $this->task_repository->list($page, $limit);
+        $data = $this->task_repository->list($user, $page, $limit);
         return $data;
     }
 }

@@ -29,7 +29,7 @@ class TaskRepository
         return Tasks::where('id', $id)->first();
     }
 
-    public function list (int $page, int $limit) {
-        return Tasks::offset($page)->limit($limit)->get();
+    public function list ($user, int $page, int $limit) {
+        return Tasks::where('owner_id', $user->id)->offset($page)->limit($limit)->get();
     }
 }
