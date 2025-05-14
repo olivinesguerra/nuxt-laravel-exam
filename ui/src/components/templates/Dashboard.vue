@@ -1,16 +1,16 @@
 <script setup lang="ts">
   import TaskItemList from "@/src/components/organisms/TaskItemList.vue";
-    let items = ref([
-      {
-        title: 'Item 1'
-      },
-      {
-        title: 'Item 2'
-      },
-      {
-        title: 'Item 3'
-      }
-    ]);
+  let items = ref([
+    {
+      title: 'Item 1'
+    },
+    {
+      title: 'Item 2'
+    },
+    {
+      title: 'Item 3'
+    }
+  ]);
 </script>
 
 <template>
