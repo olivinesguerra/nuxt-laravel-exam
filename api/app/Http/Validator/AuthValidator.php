@@ -24,9 +24,9 @@ class AuthValidator
     public function register($request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => 'nullable|email|min:1',
-            'password' => 'nullable|string|min:1',
-            'name' => 'nullable|string|min:1',
+            'email' => 'required|email|min:1',
+            'password' => 'required|string|min:1',
+            'name' => 'required|string|min:1',
         ]);
 
         if ($validator->fails()) {

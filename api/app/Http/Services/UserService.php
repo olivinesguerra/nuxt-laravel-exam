@@ -18,6 +18,13 @@ class UserService
     }
 
     public function register (Request $request) {
+
+        $user = $this->user_repository->getByEmail($request->email);
+
+        if (!is_null($user)) {
+            throw new Exception('User exists', 500);
+        }
+
        $user = $this->user_repository->create($request);
 
         try {
@@ -32,7 +39,7 @@ class UserService
         ];
     }
 
-    public function login (string $id, Request $request) {
+    public function login (Request $request) {
 
         $user = $this->user_repository->getByEmail($request->email);
 

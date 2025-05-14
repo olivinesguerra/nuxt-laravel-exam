@@ -24,7 +24,8 @@ class AuthController extends BaseController
     public function register(Request $request){
         try {
             $this->auth_validator->register($request);
-            return $this->responseSuccess();
+            $data = $this->user_service->register($request);
+            return $this->responseSuccess($data);
         } catch (Exception $e) {
             return $this->handleException($e);
         }
@@ -33,7 +34,8 @@ class AuthController extends BaseController
     public function login(Request $request){
         try {
             $this->auth_validator->login($request);
-            return $this->responseSuccess();
+            $data = $this->user_service->login($request);
+            return $this->responseSuccess($data);
         } catch (Exception $e) {
             return $this->handleException($e);
         }
