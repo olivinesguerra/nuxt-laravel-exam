@@ -24,7 +24,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Sanctum Guards
+    | PersonalAccessToken  Guards
     |--------------------------------------------------------------------------
     |
     | This array contains the authentication guards that will be checked when
@@ -34,7 +34,7 @@ return [
     |
     */
 
-    'guard' => ['web'],
+    'guard' => ['web', 'api'],
 
     /*
     |--------------------------------------------------------------------------
