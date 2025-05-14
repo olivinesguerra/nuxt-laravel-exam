@@ -5,6 +5,11 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
   ssr: false,
+  modules: [
+    '@pinia/nuxt',
+    'pinia-plugin-persistedstate/nuxt'
+  ],
+  pinia: { storesDirs: ['~/src/store/**'] },
   components: [
     {
       path: '~/src/components',
@@ -18,4 +23,5 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
   },
+  devtools: { enabled: true }
 })

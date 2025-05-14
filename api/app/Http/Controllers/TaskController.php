@@ -15,7 +15,6 @@ class TaskController extends BaseController
 
     public function __construct() {
         parent::__construct();
-        
         $this->task_validator = new TaskValidator();
         $this->task_service = new TaskService();
     }
