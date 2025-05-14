@@ -21,7 +21,7 @@ class TaskRepository
     }
 
     public function delete (string $id) {
-        return Tasks::delete($id);
+        return Tasks::where('id',$id)->delete();
     }
 
     public function get (string $id) {

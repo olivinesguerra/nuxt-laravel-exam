@@ -7,6 +7,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\AuthController;
 
 Route::group(['prefix' => 'task'], function () {
+    Route::get('/', [TaskController::class, 'list']);
     Route::get('/{id}', [TaskController::class, 'get']);
     Route::delete('/{id}', [TaskController::class, 'delete']);
     Route::put('/{id}', [TaskController::class, 'update']);
