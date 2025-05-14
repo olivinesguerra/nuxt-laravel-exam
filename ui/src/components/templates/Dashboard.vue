@@ -10,7 +10,7 @@
       {
         title: 'Item 3'
       }
-    ]);
+  ]);
 </script>
 
 <template>
