@@ -8,7 +8,6 @@
     },
   });
   const { task } = props;
-  console.log(task);
 </script>
 
 <template>

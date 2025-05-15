@@ -1,30 +1,48 @@
 <script setup lang="ts">
   import { VueFinalModal } from 'vue-final-modal';
-
-  import { cn } from '~/lib/utils';
+  import moment from "moment";
   import { Input } from '@/src/components/atoms/ui/input';
   import { Textarea } from '@/src/components/atoms/ui/textarea';
   import { Button } from "@/src/components/atoms/ui/button";
-  import { Popover, PopoverContent, PopoverTrigger } from '@/src/components/atoms/ui/popover';
-  import { CalendarIcon } from 'lucide-vue-next';
   import {
     DateFormatter,
-    type DateValue,
-    getLocalTimeZone,
-  } from '@internationalized/date'
+    type DateValue
+  } from '@internationalized/date';
+  import { useTaskStore } from "@/src/store/useTaskStore";
+
+  const { 
+    createTask, 
+    isLoading, 
+  } = useTaskStore();
 
   const df = new DateFormatter('en-US', {
     dateStyle: 'long',
   });
 
-  const props = defineProps({});
+  const props = defineProps({
+    status: {
+      type: String,
+      required: true,
+    },
+    index: {
+      type: Number,
+      required: true,
+    }
+  });
+  const { status, index } = props;
   const title = ref('');
   const description = ref('');
-  const value = ref<DateValue>()
+  const date = ref<DateValue>()
+
+  console.log(status);
 
   const emit = defineEmits<{(e: 'confirm'): void}>();
 
   const onSubmit = async() => {
+    const selectedDate: any = {...date?.value};
+    const jsonDate = new Date(selectedDate?.year, selectedDate?.month, selectedDate?.day);
+    const momentDate = moment(jsonDate).unix();
+    await createTask(title?.value, description?.value, momentDate, status, index + 1);
     emit('confirm')
   };
 </script>
@@ -55,7 +73,7 @@
       />
 
       <Calendar 
-        v-model="value" 
+        v-model="date" 
         initial-focus 
         class="flex flex-col justify-center z-50 text-white items-center" 
       />

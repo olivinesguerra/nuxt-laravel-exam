@@ -15,7 +15,6 @@
   const onDragEnd = (item: any) => {
     console.log(item);
   };
-
 </script>
 
 <template>
@@ -27,7 +26,6 @@
       @start="drag=true" 
       @end="onDragEnd"
     >
-    
       <template #item="{element}" >
         <TaskItem :task="element"/>
       </template>

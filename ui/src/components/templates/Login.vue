@@ -11,8 +11,12 @@
     const { login, isLoading, apiResponse } = useAuthStore();
 
     const onSubmitCliked = async () => {
-        await login(email?.value, password?.value);
-        await navigateTo('/dashboard')
+      await login(email?.value, password?.value);
+      await navigateTo('/dashboard');
+    };
+
+    const onRegisterClicked = async () => {
+      await navigateTo('/register');
     };
 
 </script>
@@ -22,6 +26,7 @@
         <Label class="flex mb-[20px]">Login</Label>
         <Input class="flex mb-[20px]" type="email"  placeholder="Email" v-model="email" />
         <Input class="flex mb-[20px]" type="password" placeholder="Password" v-model="password" />
+        <Button class="flex w-full mb-[10px]"  @click="onRegisterClicked">Register</Button>
         <Button class="flex w-full"  @click="onSubmitCliked">Submit</Button>
   </div>
 </template>
