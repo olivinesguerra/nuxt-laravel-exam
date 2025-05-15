@@ -13,8 +13,14 @@
   const { tasks, status } = props;
 
   const onDragEnd = (item: any) => {
+    console.log(status);
     console.log(item);
   };
+
+  const onChange = (item: any) => {
+    console.log(item);
+  };
+
 </script>
 
 <template>
@@ -22,9 +28,11 @@
     <VueDraggableNext 
       item-key="id" 
       class="flex flex-col w-full bg-black" 
-      :list="[...tasks]" 
+      v-model="tasks" 
       @start="drag=true" 
       @end="onDragEnd"
+      @change="onChange"
+      :group="status"
     >
       <template #item="{element}" >
         <TaskItem :task="element"/>

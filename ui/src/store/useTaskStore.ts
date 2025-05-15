@@ -13,6 +13,7 @@ export const useTaskStore = defineStore('tasks', {
         pending_tasks: [] as any[],
         in_progress_tasks: [] as any[],
         completed_tasks: [] as any[],
+        data: {} as { pending: any[], in_progress: any[], completed: any[] }
     }),
     actions: {
         async createTask(
@@ -67,13 +68,25 @@ export const useTaskStore = defineStore('tasks', {
 
                 if (responseData?.value) {
                     const val: any = responseData?.value;
+                    const tempData = { ...this.data };
+
                     if (status === "pending") {
+                        tempData.pending = val?.data;
+
                         this.pending_tasks = val?.data;
                     } else if (status === "in_progress") {
+
+                        tempData.in_progress = val?.data;
+
                         this.in_progress_tasks = val?.data;
                     } else if (status === "completed") {
+
+                        tempData.completed = val?.data;
+
                         this.completed_tasks = val?.data;
                     }
+
+                    this.data = tempData;
                 }
 
             } catch(err: any) {
@@ -167,7 +180,7 @@ export const useTaskStore = defineStore('tasks', {
     persist: true
 });
 
-// if (import.meta.hot) {
-//   import.meta.hot.accept(acceptHMRUpdate(useTaskStore, import.meta.hot))
-// }
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useTaskStore, import.meta.hot))
+}
 

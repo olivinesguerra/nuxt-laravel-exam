@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { ModalsContainer, useModal } from 'vue-final-modal'
+  import { ModalsContainer, useModal } from 'vue-final-modal';
   import { storeToRefs } from 'pinia';
 
   import TaskItemList from "@/src/components/organisms/TaskItemList.vue";
@@ -10,6 +10,7 @@
   const taskStore = useTaskStore();
 
   const { 
+    data,
     pending_tasks, 
     in_progress_tasks, 
     completed_tasks,
@@ -74,7 +75,7 @@
 
 <template>
   <div 
-    class="flex flex-row h-screen  bg-black text-white justify-start p-[20px]">
+    class="flex flex-row h-screen overflow-x-auto bg-black text-white justify-start p-[20px]">
     
     <div class="flex flex-col mr-[20px]">
       <div class="flex w-full text-white text-left">Pending</div>
