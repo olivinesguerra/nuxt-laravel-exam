@@ -15,6 +15,7 @@ How  to run the Frontend
 For the database
 1. Install Desktop Docker
 2. RUN docker-compose up --build
+3. RUN php artisan migrate
 
 
 
