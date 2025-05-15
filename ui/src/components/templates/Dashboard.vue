@@ -31,8 +31,9 @@
   const { open, close } = useModal({
     component: AddTaskModal,
     attrs: {
-       onConfirm() {
+      async onConfirm() {
         close()
+        await getAllData();
       }
     }
   })
@@ -52,10 +53,14 @@
     open();
   };
 
-  onMounted(async () => {
+  const getAllData = async () => {
     await getList(0, 10000, "pending");
     await getList(0, 10000, "in_progress");
     await getList(0, 10000, "completed");
+  }
+
+  onMounted(async () => {
+    await getAllData();
   });
 </script>
 
