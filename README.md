@@ -12,5 +12,10 @@ How  to run the Frontend
 3. Run yarn run dev
 
 
+For the database
+1. Install Desktop Docker
+2. RUN docker-compose up --build
+
+
 
 https://github.com/beyondcode/herd-community/issues/1195
