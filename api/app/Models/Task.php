@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 
-class Tasks extends Model
+class Task extends Model
 {
     use HasUuids;
 
@@ -84,6 +84,14 @@ class Tasks extends Model
             'created_at' => 'timestamp',
             'updated_at' => 'timestamp'
         ];
+    }
+
+    /**
+     * Get the user that owns the taks.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, "owner_id");
     }
 
 }

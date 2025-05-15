@@ -79,7 +79,6 @@
       </Button>
     </div>
     <ModalsContainer />
-    <!-- <AddTaskModal :isOpen="isModalOpen" /> -->
   </div>
 </template>
 

@@ -42,7 +42,8 @@ class TaskController extends BaseController
 
     public function delete (string $id) {
         try {
-            $this->task_service->delete($id);
+            $user = auth()->user();
+            $this->task_service->delete($id, $user);
             return $this->responseSuccess();
         } catch (Exception $e) {
             return $this->handleException($e);

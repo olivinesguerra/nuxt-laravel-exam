@@ -14,7 +14,13 @@ class TaskService
     }
 
     public function create (Request $request, $user) {
-        return  $this->task_repository->create($request, $user);
+        $this->task_repository->create($request, $user);
+
+        return  $this->task_repository->increment_less_than_order(
+            $user, 
+            $request->status, 
+            $request->order
+        );
     }
 
     public function update (string $id, Request $request) {
@@ -32,13 +38,23 @@ class TaskService
         $task->due_date = $request->filled('due_date') ? $request->due_date : $task->due_date;
         $task->status = $request->filled('status') ? $request->status : $task->status;
         $task->order = $request->filled('order') ? $request->order : $task->order;
-
-
+        
         return $task->save();
     }
 
-    public function delete (string $id) {
-        return $this->task_repository->delete($id);
+    public function delete (string $id, $user) {
+        $task = $this->task_repository->get($id);
+
+        if (is_null($task) && empty($task)) {
+            throw new Exception("Task does not exist.", 422);
+        }
+
+        $this->task_repository->delete($id);
+        return  $this->task_repository->decrement_greater_than_order(
+            $user, 
+            $task->status, 
+            $task->order
+        ); 
     }
 
     public function get (string $id) {
@@ -48,7 +64,8 @@ class TaskService
     public function list (Request $request, $user) {
         $limit = $request->filled('limit') ? $request->limit : 20;
         $page = $request->filled('page') ? $request->page : 0;
-        $data = $this->task_repository->list($user, $page, $limit);
+        $status = $request->filled('status') ? $request->status : NULL;
+        $data = $this->task_repository->list($user, $status, $page, $limit);
         return $data;
     }
 }
