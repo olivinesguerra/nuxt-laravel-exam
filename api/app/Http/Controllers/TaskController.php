@@ -32,8 +32,9 @@ class TaskController extends BaseController
 
     public function update (string $id, Request $request) {
         try {
+            $user = auth()->user();
             $this->task_validator->update($request);
-            $this->task_service->update($id, $request);
+            $this->task_service->update($id, $request, $user);
             return $this->responseSuccess();
         } catch (Exception $e) {
             return $this->handleException($e);

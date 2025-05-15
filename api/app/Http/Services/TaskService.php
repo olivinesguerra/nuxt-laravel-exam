@@ -23,7 +23,7 @@ class TaskService
         );
     }
 
-    public function update (string $id, Request $request) {
+    public function update (string $id, Request $request, $user) {
 
         $params = [];
 
@@ -38,8 +38,13 @@ class TaskService
         $task->due_date = $request->filled('due_date') ? $request->due_date : $task->due_date;
         $task->status = $request->filled('status') ? $request->status : $task->status;
         $task->order = $request->filled('order') ? $request->order : $task->order;
-        
-        return $task->save();
+        $task->save();
+         
+        return  $this->task_repository->increment_less_than_order(
+            $user, 
+            $task->status, 
+            $task->order
+        );
     }
 
     public function delete (string $id, $user) {
