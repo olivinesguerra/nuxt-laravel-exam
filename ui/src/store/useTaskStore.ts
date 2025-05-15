@@ -12,7 +12,9 @@ export const useTaskStore = defineStore('tasks', {
             apiResponse: {},
             isLoading: false,
             error: {},
-            task: [],
+            pending_tasks: [] as any[],
+            in_progress_tasks: [] as any[],
+            completed_tasks: [] as any[],
         };
     },
     getters: {
@@ -58,24 +60,41 @@ export const useTaskStore = defineStore('tasks', {
 
             this.isLoading = false;
         },
-        async getList(offset: number = 0, limit: number = 1000 ) {
+        async getList(
+            offset: number = 0, 
+            limit: number = 1000, 
+            status: 'pending' | 'in_progress' | 'completed'
+        ) {
             this.isLoading = true;
 
-            const authStore = useAuthStore();
+            try {
+                const authStore = useAuthStore();
 
-            const { data: responseData, error } = await useFetch(`${config.public.apiBase}/api/task?offset=${offset}&limit=${limit}`, {
-                method: 'get',
-                headers: {
-                    Authorization: `Bearer ${authStore?.token}`
+                const { data: responseData } = await useFetch(`${config.public.apiBase}/api/task?offset=${offset}&limit=${limit}&status=${status}`, {
+                    method: 'get',
+                    headers: {
+                        Authorization: `Bearer ${authStore?.token}`
+                    }
+                });
+
+                console.log(responseData?.value);
+
+                if (responseData?.value) {
+                    const val: any = {...responseData?.value};
+                    console.log([...val?.data]);
+                    if (status === "pending") {
+                        this.pending_tasks = [...val?.data];
+                    } else if (status === "in_progress") {
+                        this.in_progress_tasks = [...val?.data];
+                    } else if (status === "completed") {
+                        this.completed_tasks = [...val?.data];
+                    }
                 }
-            });
 
-            if (responseData.value) {
-                this.apiResponse = responseData.value;
-            } else if (error?.value) {
-                this.error = error?.value
+            } catch(err: any) {
+                this.error = err?.data
             }
-            
+
             this.isLoading = false;
         },
         async getById(id: string) {

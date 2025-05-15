@@ -69,7 +69,8 @@ class Task extends Model
         'description',
         'status',
         'due_date',
-        'owner_id'
+        'owner_id',
+        'order'
     ];
 
         /**
@@ -80,7 +81,6 @@ class Task extends Model
     protected function casts(): array
     {
         return [
-            'due_date' => 'timestamp',
             'created_at' => 'timestamp',
             'updated_at' => 'timestamp'
         ];

@@ -4,6 +4,16 @@
   import TaskItemList from "@/src/components/organisms/TaskItemList.vue";
   import AddTaskModal from "@/src/components/organisms/modal/AddTaskModal.vue";
 
+  import { useTaskStore } from "@/src/store/useTaskStore";
+
+  const { 
+    getList, 
+    isLoading, 
+    pending_tasks,
+    in_progress_tasks,
+    completed_tasks
+  } = useTaskStore();
+
   let items = ref([
     {
       title: 'Item 1'
@@ -41,6 +51,12 @@
     selectedButton.value = "completed";
     open();
   };
+
+  onMounted(async () => {
+    await getList(0, 10000, "pending");
+    await getList(0, 10000, "in_progress");
+    await getList(0, 10000, "completed");
+  });
 </script>
 
 <template>
@@ -49,7 +65,7 @@
     
     <div class="flex flex-col mr-[20px]">
       <div class="flex w-full text-white text-left">Pending</div>
-      <TaskItemList :tasks="items" status="pending" />
+      <TaskItemList :tasks="pending_tasks" status="pending" />
       <Button 
         class="flex bg-black border border-white text-white"
         @click="onAddPending"
@@ -60,7 +76,7 @@
 
     <div class="flex flex-col mr-[20px]">
       <div class="flex w-full text-white text-left">In Progress</div>
-      <TaskItemList :tasks="items" status="in_progress" />
+      <TaskItemList :tasks="in_progress_tasks" status="in_progress" />
       <Button 
         class="flex bg-black border border-white text-white"
         @click="onInProgress"
@@ -71,7 +87,7 @@
 
     <div class="flex flex-col">
       <div class="flex w-full text-white text-left">Completed</div>
-      <TaskItemList :tasks="items" status="completed" />
+      <TaskItemList :tasks="completed_tasks" status="completed" />
       <Button 
         class="flex bg-black border border-white text-white" 
         @click="onCompleted">
