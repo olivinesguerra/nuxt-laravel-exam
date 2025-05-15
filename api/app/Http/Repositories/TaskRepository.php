@@ -19,7 +19,7 @@ class TaskRepository
     }
 
     public function increment_less_than_order($user, $status, $order) {
-        return Task::where('order','<', $order)
+        return Task::where('order','<=', $order)
             ->where('status',"=", $status)
             ->where('owner_id',"=", $user->id)
             ->increment('order');
@@ -50,13 +50,15 @@ class TaskRepository
             return Task::where('owner_id', $user->id)
                 ->offset($page)
                 ->limit($limit)
+                ->orderBy("order", "ASC")
                 ->get();
         }
-        
+
         return Task::where('owner_id', $user->id)
             ->where('status',"=", $status)
             ->offset($page)
             ->limit($limit)
+            ->orderBy("order", "ASC")
             ->get();
     }
 }

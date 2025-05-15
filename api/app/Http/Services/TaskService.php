@@ -14,13 +14,15 @@ class TaskService
     }
 
     public function create (Request $request, $user) {
-        $this->task_repository->create($request, $user);
+        $task = $this->task_repository->create($request, $user);
 
-        return  $this->task_repository->increment_less_than_order(
+        $this->task_repository->increment_less_than_order(
             $user, 
             $request->status, 
             $request->order
         );
+
+        return $task;
     }
 
     public function update (string $id, Request $request, $user) {
